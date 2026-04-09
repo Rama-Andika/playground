@@ -15,10 +15,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.17.0' # Atau versi node.js yang Anda gunakan
+          node-version: "22.17.0" # Atau versi node.js yang Anda gunakan
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Inject .env.production file
+        run: |
+          echo "${{ secrets.ENV_PRODUCTION }}" > .env.production
 
       - name: Build Application
         run: npm run build # Ini akan membuat folder dist
