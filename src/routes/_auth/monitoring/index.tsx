@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_auth/monitoring/")({
 });
 
 function RouteComponent() {
-  const PAGE_TITLE = "Monitoring";
+  const PAGE_TITLE = "Monitoring update";
   const PAGE_SUBTITLE = "Session Monitoring Dashboard";
 
   return (
