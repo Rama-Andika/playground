@@ -1,0 +1,9 @@
+buatkan saya file issue.md untuk planing hal sebagai berikut:
+review kembali semua file yang pada folder src/routes/_auth/invoices
+
+apakah masih ada yang bisa di perbaiki tanpa mengubah flow dari sistem
+
+agar lebih gampang di maintain, scalable, dan mengikuti best practices 
+
+jelaskan tahapan-tahapannya secara jelas, detail, dan mengikuti best practices, planing ini akan diimplementasikan
+oleh junior programmer atau model AI yang lebih murah.
