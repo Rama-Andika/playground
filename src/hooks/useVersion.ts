@@ -4,9 +4,13 @@ import { useEffect, useRef } from "react";
  * Auto checks version.json periodically.
  * If version is updated, triggers a page reload.
  *
- * @param interval - How often to check (ms), default: 60,000 (1 minute)
+ * @param interval - How often to check (ms), default: 30,000
  */
-const basename = import.meta.env.VITE_BASENAME;
+
+// AMAN DARI DOUBLE SLASH: 
+// Jika basename '/' akan diubah jadi '', jika '/app/' akan jadi '/app'
+const rawBasename = import.meta.env.VITE_BASENAME || "";
+const basename = rawBasename === "/" ? "" : rawBasename.replace(/\/+$/, "");
 
 export const useVersion = (interval: number = 30000) => {
   const currentVersion = useRef<string | null>(null);
@@ -14,7 +18,8 @@ export const useVersion = (interval: number = 30000) => {
   useEffect(() => {
     const checkVersion = async () => {
       try {
-        const res = await fetch(`${basename}/version.json?ts=${Date.now()}`); // prevent caching
+        // Sekarang hasilnya dipastikan aman: "/version.json" atau "/app/version.json"
+        const res = await fetch(`${basename}/version.json?ts=${Date.now()}`); 
         const data = await res.json();
 
         if (!data?.version) {
