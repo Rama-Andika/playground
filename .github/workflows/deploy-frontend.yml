@@ -36,8 +36,8 @@ jobs:
 
       - name: Deploy to Amazon S3
         # Mengunggah isi folder dist ke S3 dan menghapus file lama yang tidak terpakai
-        run: aws s3 sync ./dist s3://oxysystem-akidsmaginepg --delete
+        run: aws s3 sync ./dist s3://playground-frontend-rama --delete
 
       - name: Invalidate CloudFront Cache
         # Memaksa CloudFront menghapus cache lama agar user langsung melihat web versi baru
-        run: aws cloudfront create-invalidation --distribution-id E8M7D3K5QR3X8 --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id E23EKYNWR4U8PD --paths "/*"
