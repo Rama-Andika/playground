@@ -32,7 +32,8 @@ export default defineConfig(({ mode }) => {
           cleanupOutdatedCaches: true,
           clientsClaim: true,
           skipWaiting: true,
-          globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+          globPatterns: ["**/*.{js,css,html,png,svg,ico,jpg,jpeg,webp}"],
+          navigateFallback: "/index.html",
         },
         manifest: {
           name: "Playground",
