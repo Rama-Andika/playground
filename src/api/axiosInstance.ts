@@ -2,6 +2,7 @@ import type { User } from "@/contexts/auth.context";
 import type { TResponse } from "@/types/response.type";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { getSubdomain } from "@/utils/get-subdomain";
 
 const url = import.meta.env.VITE_API_URL as string;
 const basename = import.meta.env.VITE_BASENAME;
@@ -23,6 +24,11 @@ axiosInstance.interceptors.request.use(
 
     if (user && !config.headers.Authorization) {
       config.headers.Authorization = `Bearer ${user.token}`;
+    }
+
+    const tenantId = getSubdomain();
+    if (tenantId) {
+      config.headers["X-Tenant-ID"] = tenantId;
     }
 
     return config;
