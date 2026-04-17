@@ -50,9 +50,17 @@ axiosInstance.interceptors.response.use(
           user = JSON.parse(userCookies);
         }
 
-        const response = await axios.post(`${url}/rest/auth/refresh`, {
-          refreshToken: user?.refreshToken,
-        });
+        const refreshHeaders: Record<string, string> = {};
+        const tenantId = getSubdomain();
+        if (tenantId) {
+          refreshHeaders["X-Tenant-ID"] = tenantId;
+        }
+
+        const response = await axios.post(
+          `${url}/rest/auth/refresh`,
+          { refreshToken: user?.refreshToken },
+          { headers: refreshHeaders }
+        );
 
         const result: TResponse<User> = response.data;
         const token = result.data?.token;
